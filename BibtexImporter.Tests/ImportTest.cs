@@ -8,7 +8,7 @@ namespace BibtexImporter.Tests
     public class ImportTest
     {
         [Test]
-        public void testOneEntrySimple()
+        public void TestOneEntrySimple()
         {
             BibtexFile file = BibtexLibrary.BibtexImporter.FromString(@"@book{ aaker:1981a,
                                                                                   author = {David A. Aaker},
