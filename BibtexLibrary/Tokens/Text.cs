@@ -8,16 +8,7 @@ namespace BibtexLibrary.Tokens
 {
     public class Text : AbstractToken
     {
-        private readonly string _value;
-
-        public Text(string value)
-        {
-            _value = value;
-        }
-
-        public string Value
-        {
-            get { return _value; }
-        }
+        public Text(String Value) :base(Value) { }
+        public Text(String Value, int Postion) : base(Value, Postion) { }
     }
 }

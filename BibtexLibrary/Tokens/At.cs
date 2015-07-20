@@ -8,5 +8,8 @@ namespace BibtexLibrary.Tokens
 {
     public class At : AbstractToken
     {
+            public At(String Value) :base(Value) { }
+
+            public At(String Value, int Postion) : base(Value, Postion) { }
     }
 }

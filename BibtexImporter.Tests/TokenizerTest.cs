@@ -15,19 +15,17 @@ namespace BibtexImporter.Tests
         {
             Tokenizer tokenizer = new Tokenizer(new ExpressionDictionary(), "test");
 
-            Assert.AreEqual(new Text("test"),tokenizer.NextToken());
+            Assert.AreEqual(new BibtexLibrary.Tokens.Text("test"),tokenizer.NextToken());
         }
 
         [Test]
         public void TestTokenizerSimple()
         {
             Tokenizer tokenizer = new Tokenizer(new ExpressionDictionary(), "@book{ }");
-            IEnumerable<AbstractToken> tokens = tokenizer.GetAllTokens();
-            IEnumerator<AbstractToken> enumerator = tokens.GetEnumerator();
-            enumerator.MoveNext();
+            List<AbstractToken> tokens = tokenizer.GetAllTokens().ToList();
 
             Assert.AreEqual(4, tokens.Count());
-            Assert.AreEqual(new At(), enumerator.Current);
+            Assert.AreEqual(new At("@"), tokens[0]);
         }
 
         public void TestTokenizer2()

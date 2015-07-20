@@ -14,9 +14,11 @@ namespace BibtexLibrary.Tokenizer
         }
 
         private void init()
-        {           
+        {
+            Add(typeof(At), "(\\s)*@");
+            Add(typeof(Preamble), "(\\s)*Preamble");
+            Add(typeof(NewLine), "(\\s)*$");
             Add(typeof(Text), "");
-            Add(typeof(NewLine), "$");
         }
     }
 }

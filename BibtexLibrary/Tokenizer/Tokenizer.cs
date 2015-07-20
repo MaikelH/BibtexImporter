@@ -25,7 +25,7 @@ namespace BibtexLibrary.Tokenizer
             foreach (KeyValuePair<Type, string> pair in _dictionary)
             {
                 // TODO: See if substring does not impose a to harsh performance drop
-                Match match = Regex.Match(_input.Substring(_counter), pair.Value);
+                Match match = Regex.Match(_input.Substring(_counter), pair.Value, RegexOptions.Multiline);
 
                 if (match.Success)
                 {
@@ -47,12 +47,33 @@ namespace BibtexLibrary.Tokenizer
 
         public AbstractToken Peek()
         {
-            return new NewLine();     
+            return new NewLine("sad");     
         }
 
-        public IEnumerable<AbstractToken> GetAllTokens()
+        /// <summary>
+        /// Return all the tokens in the inputstring.
+        /// </summary>
+        /// <returns>List of tokens</returns>
+        public ICollection<AbstractToken> GetAllTokens()
         {
-            return new List<AbstractToken>();
-        } 
+            List<AbstractToken> tokens = new List<AbstractToken>();
+
+            while (!EndOfInput)
+            {
+                tokens.Add(NextToken());
+            }
+
+            return tokens;
+        }
+
+        /// <summary>
+        /// Checks whether the scanner is at the end of the input.
+        /// </summary>
+        public bool EndOfInput
+        {
+            get { return (_counter >= (_input.Length)); }
+        }
+
+
     }
 }
