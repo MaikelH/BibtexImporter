@@ -31,5 +31,23 @@ namespace BibtexLibrary.Tokens
         {
             get { return _position; }
         }
+
+        public override bool Equals(object obj)
+        {
+            // If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            AbstractToken token = (AbstractToken) obj;
+
+            return (token.GetValue() == GetValue()) && (token.Position == Position);
+        }
     }
 }

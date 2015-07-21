@@ -4,6 +4,7 @@ using System.Linq;
 using BibtexLibrary.Tokenizer;
 using BibtexLibrary.Tokens;
 using NUnit.Framework;
+using Text = BibtexLibrary.Tokens.Text;
 
 namespace BibtexImporter.Tests
 {
@@ -26,6 +27,9 @@ namespace BibtexImporter.Tests
 
             Assert.AreEqual(4, tokens.Count());
             Assert.AreEqual(new At("@"), tokens[0]);
+            Assert.AreEqual(new Text("book", 1), tokens[1]);
+            Assert.AreEqual(new OpeningBrace("{", 5), tokens[2]);
+            Assert.AreEqual(new ClosingBrace(" }" ,6), tokens[3]);
         }
 
         public void TestTokenizer2()

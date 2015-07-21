@@ -17,8 +17,10 @@ namespace BibtexLibrary.Tokenizer
         {
             Add(typeof(At), "(\\s)*@");
             Add(typeof(Preamble), "(\\s)*Preamble");
-            Add(typeof(NewLine), "(\\s)*$");
-            Add(typeof(Text), "");
+            Add(typeof(NewLine), "^(\\s)*$");
+            Add(typeof(Text), "^[A-z]+");
+            Add(typeof(OpeningBrace), "^(\\s)*{");
+            Add(typeof(ClosingBrace), "^(\\s)*}");
         }
     }
 }

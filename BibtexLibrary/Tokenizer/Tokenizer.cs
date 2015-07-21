@@ -27,19 +27,22 @@ namespace BibtexLibrary.Tokenizer
                 // TODO: See if substring does not impose a to harsh performance drop
                 Match match = Regex.Match(_input.Substring(_counter), pair.Value, RegexOptions.Multiline);
 
-                if (match.Success)
+                if (!match.Success)
                 {
-                    _counter += match.Value.Length;
-
-                    if (pair.Key.IsSubclassOf(typeof(AbstractToken)))
-                    {
-                        // Create new instance of the specified type with the found value as parameter
-                        AbstractToken token = (AbstractToken)Activator.CreateInstance(pair.Key, new object[] { match.Value, _counter - match.Value.Length }, null);
-
-                        return token;
-                    }
-
+                    continue;
                 }
+
+                _counter += match.Value.Length;
+
+                if (!pair.Key.IsSubclassOf(typeof (AbstractToken)))
+                {
+                    continue;
+                }
+                    
+                // Create new instance of the specified type with the found value as parameter
+                AbstractToken token = (AbstractToken)Activator.CreateInstance(pair.Key, new object[] { match.Value, _counter - match.Value.Length }, null);
+
+                return token;
             }
 
             throw new MatchException(_input[_counter].ToString(CultureInfo.InvariantCulture), _counter);
