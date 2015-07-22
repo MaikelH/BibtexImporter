@@ -25,7 +25,7 @@ namespace BibtexLibrary.Tokenizer
             foreach (KeyValuePair<Type, string> pair in _dictionary)
             {
                 // TODO: See if substring does not impose a to harsh performance drop
-                Match match = Regex.Match(_input.Substring(_counter), pair.Value, RegexOptions.Multiline);
+                Match match = Regex.Match(_input.Substring(_counter), pair.Value);
 
                 if (!match.Success)
                 {

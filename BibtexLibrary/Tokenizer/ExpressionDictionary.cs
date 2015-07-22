@@ -15,12 +15,14 @@ namespace BibtexLibrary.Tokenizer
 
         private void init()
         {
-            Add(typeof(At), "(\\s)*@");
+            Add(typeof(At), "^(\\s)*@");
             Add(typeof(Preamble), "(\\s)*Preamble");
             Add(typeof(NewLine), "^(\\s)*$");
-            Add(typeof(Text), "^[A-z]+");
             Add(typeof(OpeningBrace), "^(\\s)*{");
             Add(typeof(ClosingBrace), "^(\\s)*}");
+            Add(typeof(Comma), "^\\s*,");
+            Add(typeof(Equals), "^\\s*=");
+            Add(typeof(Text), "^\\s*[A-z0-9:.\\s]+");
         }
     }
 }
