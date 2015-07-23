@@ -6,8 +6,6 @@ namespace BibtexLibrary.Tokenizer
 {
     public class ExpressionDictionary : Dictionary<Type, String>
     {
-        private Dictionary<Type, string> _mapping;
-
         public ExpressionDictionary()
         {
             init();
@@ -22,7 +20,7 @@ namespace BibtexLibrary.Tokenizer
             Add(typeof(ClosingBrace), "^(\\s)*}");
             Add(typeof(Comma), "^\\s*,");
             Add(typeof(Equals), "^\\s*=");
-            Add(typeof(Text), "^\\s*[A-z0-9:.\\s]+");
+            Add(typeof(Text), "^\\s*[\\w\\d:\\.\\s]+");
         }
     }
 }

@@ -42,6 +42,12 @@
     <Compile Include="BibtexEntry.cs" />
     <Compile Include="BibtexFile.cs" />
     <Compile Include="BibtexImporter.cs" />
+    <Compile Include="Parser\BibtexParser.cs" />
+    <Compile Include="Parser\Nodes\BibtexFile.cs" />
+    <Compile Include="Parser\Nodes\Entry.cs" />
+    <Compile Include="Parser\Nodes\ParseNode.cs" />
+    <Compile Include="Parser\Nodes\Tag.cs" />
+    <Compile Include="Parser\ParseException.cs" />
     <Compile Include="Tokenizer\ExpressionDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tokenizer\MatchException.cs" />
