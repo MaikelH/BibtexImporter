@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BibtexLibrary.Parser.Nodes;
 using BibtexLibrary.Tokens;
 
@@ -24,7 +25,22 @@ namespace BibtexLibrary.Parser
 
         private BibtexFile convertParseNode(ParseNode node)
         {
-            return new BibtexFile();
+            Nodes.BibtexFile parseFile = (Nodes.BibtexFile) node;
+
+            BibtexFile bibtex = new BibtexFile();
+
+            foreach (Entry entry in parseFile.Entries)
+            {
+                BibtexEntry bibtexEntry = new BibtexEntry();
+                bibtexEntry.Key = entry.Key;
+                bibtexEntry.Type = entry.Type;
+
+                entry.Tags.ToList().ForEach(x => bibtexEntry.Tags.Add(x.Key, x.Value));
+
+                bibtex.Entries.Add(bibtexEntry);
+            }
+
+            return bibtex;
         }
 
         private ParseNode ParseInput(Tokenizer.Tokenizer tokenizer)
@@ -95,11 +111,17 @@ namespace BibtexLibrary.Parser
             throw new ParseException("Expected type OpeningBrace but found: " + token.GetType());
         }
 
-        private void Comma(Tokenizer.Tokenizer tokenizer)
+        private void Comma(Tokenizer.Tokenizer tokenizer, Boolean optional = false)
         {
-            AbstractToken token = tokenizer.NextToken();
+            AbstractToken token = tokenizer.Peek();
 
             if (token.GetType() == typeof(Comma))
+            {
+                tokenizer.NextToken();
+                return;
+            }
+
+            if (optional)
             {
                 return;
             }
@@ -119,6 +141,7 @@ namespace BibtexLibrary.Parser
                 OpeningBrace(tokenizer);
                 tag.Value = Text(tokenizer);
                 ClosingBrace(tokenizer);
+                Comma(tokenizer, true);
 
                 tags.Add(tag);
             }
