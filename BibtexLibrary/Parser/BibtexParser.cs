@@ -111,9 +111,31 @@ namespace BibtexLibrary.Parser
         {
             List<Tag> tags = new List<Tag>();
 
+            while (tokenizer.Peek().GetType() != typeof (ClosingBrace))
+            {
+                Tag tag = new Tag();
+                tag.Key = Text(tokenizer);
+                Equals(tokenizer);
+                OpeningBrace(tokenizer);
+                tag.Value = Text(tokenizer);
+                ClosingBrace(tokenizer);
 
+                tags.Add(tag);
+            }
 
             return tags;            
+        }
+
+        private void Equals(Tokenizer.Tokenizer tokenizer)
+        {
+            AbstractToken token = tokenizer.NextToken();
+
+            if (token.GetType() == typeof(Equals))
+            {
+                return;
+            }
+
+            throw new ParseException("Expected type Equals but found: " + token.GetType());
         }
     }
 }

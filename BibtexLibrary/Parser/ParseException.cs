@@ -4,7 +4,7 @@ namespace BibtexLibrary.Parser
 {
     public class ParseException : Exception
     {
-        public ParseException(string s)
+        public ParseException(string s) : base(s)
         {
             
 

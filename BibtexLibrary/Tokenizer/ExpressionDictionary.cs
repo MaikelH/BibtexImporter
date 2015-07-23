@@ -8,10 +8,10 @@ namespace BibtexLibrary.Tokenizer
     {
         public ExpressionDictionary()
         {
-            init();
+            Init();
         }
 
-        private void init()
+        private void Init()
         {
             Add(typeof(At), "^(\\s)*@");
             Add(typeof(Preamble), "(\\s)*Preamble");
