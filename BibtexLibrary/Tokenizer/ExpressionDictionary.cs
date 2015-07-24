@@ -18,9 +18,9 @@ namespace BibtexLibrary.Tokenizer
             Add(typeof(NewLine), "^(\\s)*$");
             Add(typeof(OpeningBrace), "^(\\s)*{");
             Add(typeof(ClosingBrace), "^(\\s)*}");
-            Add(typeof(Comma), "^\\s*,");
             Add(typeof(Equals), "^\\s*=");
             Add(typeof(Text), "^\\s*[\\w\\d:\\.\\s]+");
+            Add(typeof(Comma), "^\\s*,");
         }
     }
 }

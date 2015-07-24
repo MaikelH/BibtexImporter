@@ -48,6 +48,9 @@
     <Compile Include="TokenizerTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Test Files\Fuzzy Mining.bib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -7,7 +7,6 @@ namespace BibtexImporter.Tests
     [TestFixture]
     public class ImportTest
     {
-        [Test]
         public void TestOneEntrySimple()
         {
             BibtexFile file = BibtexLibrary.BibtexImporter.FromString(@"@book{ aaker:1981a,

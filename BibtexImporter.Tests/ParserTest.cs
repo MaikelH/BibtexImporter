@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using BibtexLibrary;
 using BibtexLibrary.Parser;
 using BibtexLibrary.Tokenizer;
@@ -76,6 +77,19 @@ namespace BibtexImporter.Tests
             Assert.AreEqual("David A. Baker", file.Entries.ToList()[1].Tags.First().Value);
             Assert.AreEqual("title", file.Entries.ToList()[1].Tags.ToList()[1].Key);
             Assert.AreEqual("Multivariate statistics 2", file.Entries.ToList()[1].Tags.ToList()[1].Value);
+        }
+
+        [Test]
+        public void FuzzyMiningTestFileTest()
+        {
+            using (StreamReader reader = new StreamReader("Test Files\\Fuzzy Mining.bib"))
+            {
+                Tokenizer tokenizer = new Tokenizer(new ExpressionDictionary(), reader.ReadToEnd());
+                BibtexParser parser = new BibtexParser(tokenizer);
+                BibtexFile file = parser.Parse();
+
+                Assert.AreEqual(3, file.Entries.Count);
+            }
         }
     }
 }
